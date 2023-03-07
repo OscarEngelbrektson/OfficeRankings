@@ -1,45 +1,24 @@
 import json
 
-import gspread
-import pandas as pd
-
-import trueskill
+from db import get_game_outcomes, write_player_ratings
+from player_ratings import calculate_player_ratings
 
 def lambda_handler(event, context):
-    
-    
     game_outcomes = get_game_outcomes()
-
     
     print(game_outcomes)
 
-    for g in game_outcomes.Game.unique():
-        g_outcomes = game_outcomes[game_outcomes.Game == g]
-        print(pd.concat(g_outcomes['Player A'], g_outcomes['Player B']))
-    #python_sheet = sheet.get_all_records()
-    
+    player_ratings = calculate_player_ratings(game_outcomes)
+
+    print(player_ratings)
+
+    write_player_ratings(player_ratings)
+
     # TODO implement
     return {
         'statusCode': 200,
-        'body': 'test!'
+        'body': player_ratings.to_json()
     }
 
 
-def get_game_outcomes():
-    scope = [
-        'https://www.googleapis.com/auth/drive',
-        'https://www.googleapis.com/auth/drive.file'
-    ]
-        
-    key_file_name = 'gdrive_api_key.json'
-    sheet_name = 'Game outcome (Responses)'
-
-    gc = gspread.service_account(filename=key_file_name)
-    sheet = gc.open(sheet_name).get_worksheet(0)
-
-    return pd.DataFrame(sheet.get_all_records())
-
-def display_rating(rating):
-    return rating.mu - 3 * rating.sigma
-
-#lambda_handler(0,0)
+lambda_handler(0,0)
