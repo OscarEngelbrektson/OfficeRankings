@@ -22,8 +22,6 @@ def calculate_player_ratings(game_outcomes):
 
             player_ratings[pA], player_ratings[pB] = rate_1vs1(player_ratings[pA], player_ratings[pB])
 
-        # print({p: display_rating(r) for p, r in player_ratings.items()})
-
         df = pd.DataFrame({
             'Game': game,
             'Player': player_ratings.keys(),

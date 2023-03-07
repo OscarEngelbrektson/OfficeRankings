@@ -14,7 +14,6 @@ def lambda_handler(event, context):
 
     write_player_ratings(player_ratings)
 
-    # TODO implement
     return {
         'statusCode': 200,
         'body': player_ratings.to_json()
