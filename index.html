@@ -12,24 +12,65 @@
 
                 let list = Object.keys(df.index).map(i => Object.fromEntries(Object.keys(df).map(k => [k, df[k][i]])))
 
-                let table = document.querySelector('table')
+                render_table(list)
 
-                let tr = table.insertRow();
-                Object.keys(list[0]).forEach(key => tr.insertCell().textContent = key)
-
-                list.forEach(item => {
-                    let tr = table.insertRow();
-                    Object.values(item).forEach(value => tr.insertCell().textContent = value)
-                })
-
+                render_dropdown(list)
             }
+
+            let render_table = (list, filter='all') => {
+                let table = document.querySelector('table#ranking_table')
+
+                if (filter != 'all') {
+                    list = list.filter(x => x.Game == filter)
+                }
+
+                table.innerHTML = `
+                    <tr>
+                        ${Object.keys(list[0]).map(key => `
+                            <th>${key}</th>
+                        `).join('')}
+                    </tr>
+                    ${list.map(item => `
+                        <tr>
+                            ${Object.values(item).map(value => `
+                                <td>${value}</td>
+                            `).join('')}
+                        </tr>
+                    `).join('')}
+                `
+            }
+
+            unique_values = (value, index, self) => self.indexOf(value) === index
+
+            let render_dropdown = (list) => {
+                let select = document.querySelector('select#dropdown')
+
+                let game_types = list.map(x => x.Game).filter(unique_values)
+
+                select.innerHTML = `
+                    <option value="all">All</option>
+                    ${game_types.map(game => `
+                        <option value="${game}">
+                            ${game}
+                        </option>
+                    `).join('')}
+                `
+
+                select.addEventListener('change', () => render_table(list, select.value));
+            } 
 
             addEventListener('DOMContentLoaded', main);
         </script>
         
     </head>
     <body>
-        <table>
+        <select id="dropdown">
+            <!-- <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="audi">Audi</option> -->
+          </select>
+        <table id="ranking_table">
         </table>
     </body>
 </html>
