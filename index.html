@@ -1,18 +1,35 @@
 <html>
     <head>
         <script>
+            lambda_url = 'https://lne6kwcwxzlg5fskrfnkkt4lj40lssgc.lambda-url.eu-north-1.on.aws/ratings'
             let main = async () => {
                 console.log('main')
-                URL = 'https://lne6kwcwxzlg5fskrfnkkt4lj40lssgc.lambda-url.eu-north-1.on.aws/ratings'
-                const response = await fetch(URL, {cache: 'no-cache', mode: 'no-cors'})
-                // const response = await fetch('https://google.com', {cache: 'no-cache', mode: 'no-cors'})
-                // const response = await fetch('https://lne6kwcwxzlg5fskrfnkkt4lj40lssgc.lambda-url.eu-north-1.on.aws/ratings', {cache: 'no-cache', mode: 'no-cors'})
-                console.log(response)
-                document.write(response)
+                let response = await fetch(lambda_url, {cache: 'no-cache'})
+                let df = await response.json()
+
+                console.log(df)
+                // document.write(JSON.stringify(df))
+
+                let list = Object.keys(df.index).map(i => Object.fromEntries(Object.keys(df).map(k => [k, df[k][i]])))
+
+                let table = document.querySelector('table')
+
+                let tr = table.insertRow();
+                Object.keys(list[0]).forEach(key => tr.insertCell().textContent = key)
+
+                list.forEach(item => {
+                    let tr = table.insertRow();
+                    Object.values(item).forEach(value => tr.insertCell().textContent = value)
+                })
+
             }
 
-            main()
+            addEventListener('DOMContentLoaded', main);
         </script>
+        
     </head>
-    <body></body>
+    <body>
+        <table>
+        </table>
+    </body>
 </html>
