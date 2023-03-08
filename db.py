@@ -9,6 +9,10 @@ def write_player_ratings(player_ratings):
     sheet = get_google_sheet().get_worksheet(PLAYER_RATINGS_SHEET_NR)
     df_to_sheet(sheet, player_ratings)
 
+def get_player_ratings():
+    sheet = get_google_sheet().get_worksheet(PLAYER_RATINGS_SHEET_NR)
+    return sheet_to_df(sheet)
+
 GAME_OUTCOMES_SHEET_NR = 0
 PLAYER_RATINGS_SHEET_NR = 1
 
