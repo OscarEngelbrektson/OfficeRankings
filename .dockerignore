@@ -1,4 +1,4 @@
 .conda
 __pycache__
 
-push-container.sh
+simple-push-lambda.sh

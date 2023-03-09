@@ -33,4 +33,4 @@ def calculate_player_ratings(game_outcomes):
     return ratings_df.reset_index()
 
 def display_rating(rating):
-    return int(round(rating.mu - 3 * rating.sigma, 2) * 100)
+    return int(max((rating.mu - 3 * rating.sigma) * 100, 0))

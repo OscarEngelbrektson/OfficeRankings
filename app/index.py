@@ -31,6 +31,12 @@ def update_ratings(ev, cxt, kwargs):
 
     return player_ratings.to_json()
 
+@app.route('/outcomes', methods=['GET'])
+def get_ratings(ev, cxt, kwargs):
+    game_outcomes = get_game_outcomes()
+
+    return game_outcomes.to_json()
+
 def lambda_handler(event, context):
     try:
         return {
