@@ -18,6 +18,7 @@
                 /* top: 50%; */
                 /* transform: translateY(-50%); */
                 margin: auto;
+                max-width: 800px;
             }
             .slide {
                 background-color: #FFFFFF;
@@ -25,12 +26,12 @@
                 box-shadow: 3px 3px 3px #b4b4b4;
 
                 width: 90%;
-                aspect-ratio: 2;
+                aspect-ratio: 16/9;
 
                 position: relative;
                 top: 0;
 
-                padding: 28px 25px;
+                padding: 40px 40px;
                 margin: 0 auto 20px auto;
      
                 font-family: "Trebuchet MS", "Trebuchet MS_EmbeddedFont", "Trebuchet MS_MSFontService", sans-serif;
@@ -38,7 +39,7 @@
 
             .slide > .title {
                 color: var(--accent-green);
-                font-size: 130%;
+                font-size: 20px;
             }
             
             .slide > .title > .pre-title {
@@ -47,7 +48,7 @@
 
             .slide > .footnote {
                 color: var(--accent-gray);
-                font-size: 70%;
+                font-size: 10px;
 
                 position: absolute;
                 bottom: 25px;
@@ -55,7 +56,7 @@
 
             .slide > .copyright {
                 color: var(--accent-gray);
-                font-size: 70%;
+                font-size: 8px;
 
                 position: absolute;
                 bottom: 25px;
@@ -67,36 +68,144 @@
 
             .slide > .content {
                 margin-top: 20px;
-                font-size: 90%;
+                font-size: 16px;
+                height: 80%;
             }
 
-            table.ranking_table {
+            .slide > .content > div {
+                float: left;
+                height: 100%;
+                overflow-y: auto;
+            }
+
+            .slide > .content > .table-container {
                 border-spacing: 20px 10px;
-                /* border-collapse: collapse; */
-                margin: -10px 0 1px -20px;
-                font-size: 100%;
+                border-collapse: collapse;
+
+                width: 45%;
+                /* margin: -10px 0 1px -20px; */
             }
 
-            .ranking_table th {
+            table.ranking-table {
+                border-spacing: 20px 10px;
+                border-collapse: collapse;
+
+                font-size: 100%;
+                width: 100%;
+                /* margin: -10px 0 1px -20px; */
+            }
+
+            .ranking-table th {
                 color: var(--accent-green);
                 text-align: left;
-                padding: 0;
-                padding-bottom: 2px;
+                /* padding: 0; */
+                /* padding-bottom: 2px; */
 
+                padding-right: 10px;
+            }
+            .ranking-table th > div {
+                width: 100%;
+                padding-bottom: 2px;
                 border-bottom: 1px solid var(--accent-green);
             }
 
-            .ranking_table td {
+            .ranking-table td {
                 text-align: left;
-                padding: 0;
+                padding: 10px 0 10px 0;
+                padding-right: 10px;
             }
 
-            .ranking_table tr {
+            .ranking-table tr {
                 border-top: 1px dotted gray;
             }
-            .ranking_table tr:first {
-                border-top: 0;
+            .ranking-table tr:nth-child(-n + 2) {
+                border: 0;
             }
+
+            .number-ball {
+                width: 20px;
+                height: 20px;
+                background-color: var(--accent-green);
+                border-radius: 100%;
+                text-align: center;
+                color: white;
+                font-size: 12px;
+                line-height: 20px;
+                margin: auto;
+            }
+
+            .flow-arrow {
+                width: 10%;
+                background-image: linear-gradient(var(--accent-gray), var(--accent-gray));
+                background-size: 0.5px 100%;
+                background-repeat: no-repeat;
+                background-position: center center;
+            }
+
+            .flow-arrow > .arrow {
+                width: 20px;
+                height: 20px;
+                background-color: var(--accent-green);
+                border-radius: 100%;
+                margin: auto;
+
+                position: relative; 
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            .flow-arrow > .arrow > .top {
+                width: 50%;
+                height: 1px;
+                background: white;
+                transform: rotate(45deg);
+                position: absolute;
+                top: 30%;
+                left: 30%;
+                transform: rotate(45deg);
+            }
+
+            .flow-arrow > .arrow > .bottom {
+                width: 50%;
+                height: 1px;
+                background: white;
+                transform: rotate(45deg);
+                margin: auto;
+                position: absolute;
+                top: 62%;
+                left: 30%;
+                transform: rotate(-45deg);
+            }
+
+            .slide .commentary-container {
+                width: 45%;
+
+            }
+            .slide .commentary-container >.heading {
+                color: var(--accent-green);
+                font-weight: bold;
+                border-bottom: 1px solid var(--accent-green);
+                padding-bottom: 2px;
+            }
+
+            .slide .commentary-container > ul {
+                padding-left: 16px;
+                list-style: none
+            }
+
+            .slide .commentary-container > ul > li::before {
+                content: "\2022";
+                color: var(--accent-green);
+                font-weight: bold; /* If you want it to be bold */
+                display: inline-block; /* Needed to add space between the bullet and the text */
+                width: 1em; /* Also needed for space (tweak if needed) */
+                margin-left: -1em; /* Also needed for space (tweak if needed) */
+            }
+
+            .slide .commentary-container > ul > li + li {
+                padding-top: 12px;
+            }
+            
         </style>
 
         <!-- <script src="client/data.js"></script> -->
@@ -117,7 +226,23 @@
                     </div>
                 </div>
                 <div class="content">
-                    <table id="ranking_table" class="ranking_table"></table>
+                    <div class="table-container">
+                        <table id="ranking-table" class="ranking-table"></table>
+                    </div>
+                    <div class="flow-arrow">
+                        <div class="arrow">
+                            <div class="top"></div>
+                            <div class="bottom"></div>
+                        </div>
+                    </div>
+                    <div class="commentary-container">
+                        <div class="heading">Commentary</div>
+                        <ul class="bullet-points">
+                            <li>John Rapp Farnes a clear leader, key question is whether Oscar Engelbrektsson can catch up</li>
+                            <li>Teif Alsadi just beat Oskar Christiansen in a nerve-racking game of Ping pong, his rating growing rapidly, albeit from a low base</li>
+                            <li>Erik Eriksson's Ping pong activity at the office is experiencing strong growth, driven by fundamental trends of BD work and 'nothing better to do tbh'</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="copyright">
                     Copyright &#169; John Rapp Farnes & Oscar Engelbrektsson
@@ -142,7 +267,7 @@
         </div>
         
         <!-- <select id="dropdown"></select>
-        <table id="ranking_table"></table> -->
+        <table id="ranking-table"></table> -->
         
     </body>
 </html>

@@ -7,12 +7,12 @@ let main = async () => {
     let ratings = await getPlayerRatings()
 
     renderTable(ratings, 'Ping pong')
-    renderDropdown(ratings)
+    // renderDropdown(ratings)
 }
 
 let removeColumn = colName => o => delete o[colName] && o
 let renderTable = (ratings, filter='all') => {
-    let table = $('#ranking_table')
+    let table = $('#ranking-table')
 
     if (filter != 'all') {
         ratings = ratings.filter(x => x.Game == filter)
@@ -22,13 +22,15 @@ let renderTable = (ratings, filter='all') => {
 
     table.innerHTML = `
         <tr>
-            <th>Rank</th>
-            <th>Player</th>
-            <th>Rating</th>
+            <th><div>Rank</div></th>
+            <th><div>Player</div></th>
+            <th><div>Rating</div></th>
         </tr>
         ${ratings.map(i => `
             <tr>
-                <td>${i.index + 1}</td>
+                <td>
+                    <div class="number-ball">${i.index + 1}</div>
+                </td>
                 <td>${i.Player}</td>
                 <td>${i.Rating}</td>
             </tr>
