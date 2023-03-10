@@ -1,5 +1,5 @@
 import { getPlayerRatings } from './data.js'
-import { ResultsSlide } from './components.js'
+import { ResultsSlide, AgendaSlide } from './components.js'
 
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
@@ -8,11 +8,14 @@ let main = async () => {
     let ratings = await getPlayerRatings()
 
     let app = $('#app')
+  
+    let gameTypes = ratings.map(x => x.Game).filter(uniqueValues)
     app.innerHTML = `
-        ${ResultsSlide(ratings, 'Ping pong')}
-        ${ResultsSlide(ratings, 'Chess')}
+        ${AgendaSlide(gameTypes)}
+        ${gameTypes.map(game => ResultsSlide(ratings, game))}
+        ${ResultsSlide(ratings, 'all')}
     `
-// renderTable(ratings, 'Ping pong')
+    // renderTable(ratings, 'Ping pong')
     // renderDropdown(ratings)
 }
 

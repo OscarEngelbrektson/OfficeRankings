@@ -28,39 +28,29 @@
                 width: 90%;
                 aspect-ratio: 16/9;
 
-                /* @supports not (aspect-ratio: 16/9) {
-                    &::before {
-                        float: left;
-                        padding-top: 56.25%;
-                        content: "";
-                    }
-
-                    &::after {
-                        display: block;
-                        content: "";
-                        clear: both;
-                    }
-                } */
-
                 position: relative;
                 top: 0;
 
-                padding: 40px 40px;
+                /* padding: 40px 40px; */
                 margin: 0 auto 20px auto;
      
                 font-family: "Trebuchet MS", "Trebuchet MS_EmbeddedFont", "Trebuchet MS_MSFontService", sans-serif;
             }
 
-            .slide > .title {
+            .slide.default-slide > .slide-inner, .slide .two-thirds-inner {
+                margin: 40px 40px;
+            }
+
+            .slide-title {
                 color: var(--accent-green);
                 font-size: 20px;
             }
             
-            .slide > .title > .pre-title {
+            .slide-title > .pre-title {
                 color: var(--accent-blue);
             }
 
-            .slide > .footnote {
+            .slide .footnote {
                 color: var(--accent-gray);
                 font-size: 10px;
 
@@ -68,7 +58,7 @@
                 bottom: 25px;
             }
 
-            .slide > .copyright {
+            .slide .copyright {
                 color: var(--accent-gray);
                 font-size: 8px;
 
@@ -80,19 +70,19 @@
                 transform: rotate(180deg);
             }
 
-            .slide > .content {
+            .slide-inner .content {
                 margin-top: 20px;
                 font-size: 16px;
                 height: 80%;
             }
 
-            .slide > .content > div {
+            .slide-inner .content > div {
                 float: left;
                 height: 100%;
                 overflow-y: auto;
             }
 
-            .slide > .content > .table-container {
+            .slide-inner .content > .table-container {
                 border-spacing: 20px 10px;
                 border-collapse: collapse;
 
@@ -156,7 +146,7 @@
                 background-position: center center;
             }
 
-            .flow-arrow > .arrow {
+            .green-arrow {
                 width: 20px;
                 height: 20px;
                 background-color: var(--accent-green);
@@ -168,7 +158,7 @@
                 transform: translateY(-50%);
             }
 
-            .flow-arrow > .arrow > .top {
+            .green-arrow > .top {
                 width: 50%;
                 height: 1px;
                 background: white;
@@ -179,7 +169,7 @@
                 transform: rotate(45deg);
             }
 
-            .flow-arrow > .arrow > .bottom {
+            .green-arrow > .bottom {
                 width: 50%;
                 height: 1px;
                 background: white;
@@ -218,6 +208,45 @@
 
             .slide .commentary-container > ul > li + li {
                 padding-top: 12px;
+            }
+
+            .slide .one-third {
+                width: 33%;
+                height: 100%;
+                float: left;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                position: relative;
+            }
+
+            .slide .one-third .slide-title {
+                padding: 40px;
+                color: white;
+                z-index: 100;
+            }
+
+            .slide .one-third.agenda-bg {
+                background-image: url("client/res/agenda-bg.png");
+                background-size: auto 100%;
+                background-position: 40% center;
+            }
+
+            .slide .two-thirds {
+                width: 67%;
+                height: 100%;
+                float: left;
+            }
+            
+            .img-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(128,128,128,0.2);
             }
             
         </style>

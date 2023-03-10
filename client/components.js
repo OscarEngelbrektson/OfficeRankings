@@ -1,12 +1,15 @@
 export let Slide = ({title = 'Title', preTitle = '', footNote = '', content = ''}) => {
     return `
-        <div class="slide">
-            <div class="title">
-                <span class="pre-title">${preTitle ? preTitle + ' | ' : ''}</span>${title}</div>
-            <div class="footnote">${footNote}</div>
-            <div class="content">${content}</div>
-            <div class="copyright">
-                Copyright &#169; John Rapp Farnes & Oscar Engelbrektsson
+        <div class="slide default-slide">
+            <div class="slide-inner">
+                <div class="slide-title">
+                    <span class="pre-title">${preTitle ? preTitle + ' | ' : ''}</span>${title}
+                </div>
+                <div class="footnote">${footNote}</div>
+                <div class="content">${content}</div>
+                <div class="copyright">
+                    Copyright &#169; John Rapp Farnes & Oscar Engelbrektsson
+                </div>
             </div>
         </div>
     `
@@ -27,7 +30,7 @@ export let ResultsSlide = (ratings, filter='all') => {
             ${RankingTable(ratings, filter)}
         </div>
         <div class="flow-arrow">
-            <div class="arrow">
+            <div class="green-arrow">
                 <div class="top"></div>
                 <div class="bottom"></div>
             </div>
@@ -74,31 +77,25 @@ export let RankingTable = (ratings, filter='all') => {
     `
 }
 
-// let renderTable = (ratings, filter='all') => {
-//     let table = $('#ranking-table')
+export let AgendaSlide = (gameTypes) => {
+    let title = 'Contents of this document'
 
-//     if (filter != 'all') {
-//         ratings = ratings.filter(x => x.Game == filter)
-//     }
+    let content = ''
 
-//     // ratings = ratings.filter(removeColumn('index'))
-
-//     table.innerHTML = `
-        
-//     `
-    
-//     // table.innerHTML = `
-//     //     <tr>
-//     //         ${Object.keys(ratings[0]).map(key => `
-//     //             <th>${key}</th>
-//     //         `).join('')}
-//     //     </tr>
-//     //     ${ratings.map(item => `
-//     //         <tr>
-//     //             ${Object.values(item).map(value => `
-//     //                 <td>${value}</td>
-//     //             `).join('')}
-//     //         </tr>
-//     //     `).join('')}
-//     // `
-// }
+    return `
+        <div class="slide">
+            <div class="one-third agenda-bg">
+                <div class="img-overlay"></div>
+                <div class="slide-title">
+                    ${title}
+                </div>
+            </div>
+            <div class="two-thirds">
+                <div class="two-thirds-inner"></div>
+            </div>
+            <div class="copyright">
+                Copyright &#169; John Rapp Farnes & Oscar Engelbrektsson
+            </div>
+        </div>
+    `
+}
