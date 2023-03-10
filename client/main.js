@@ -1,4 +1,5 @@
 import { getPlayerRatings } from './data.js'
+import { ResultsSlide } from './components.js'
 
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
@@ -6,52 +7,17 @@ const $$ = document.querySelectorAll.bind(document)
 let main = async () => {
     let ratings = await getPlayerRatings()
 
-    renderTable(ratings, 'Ping pong')
+    let app = $('#app')
+    app.innerHTML = `
+        ${ResultsSlide(ratings, 'Ping pong')}
+        ${ResultsSlide(ratings, 'Chess')}
+    `
+// renderTable(ratings, 'Ping pong')
     // renderDropdown(ratings)
 }
 
 let removeColumn = colName => o => delete o[colName] && o
-let renderTable = (ratings, filter='all') => {
-    let table = $('#ranking-table')
 
-    if (filter != 'all') {
-        ratings = ratings.filter(x => x.Game == filter)
-    }
-
-    // ratings = ratings.filter(removeColumn('index'))
-
-    table.innerHTML = `
-        <tr>
-            <th><div>Rank</div></th>
-            <th><div>Player</div></th>
-            <th><div>Rating</div></th>
-        </tr>
-        ${ratings.map(i => `
-            <tr>
-                <td>
-                    <div class="number-ball">${i.index + 1}</div>
-                </td>
-                <td>${i.Player}</td>
-                <td>${i.Rating}</td>
-            </tr>
-        `).join('')}
-    `
-    
-    // table.innerHTML = `
-    //     <tr>
-    //         ${Object.keys(ratings[0]).map(key => `
-    //             <th>${key}</th>
-    //         `).join('')}
-    //     </tr>
-    //     ${ratings.map(item => `
-    //         <tr>
-    //             ${Object.values(item).map(value => `
-    //                 <td>${value}</td>
-    //             `).join('')}
-    //         </tr>
-    //     `).join('')}
-    // `
-}
 
 let uniqueValues = (value, index, self) => self.indexOf(value) === index
 let renderDropdown = (ratings) => {

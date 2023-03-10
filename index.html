@@ -28,7 +28,7 @@
                 width: 90%;
                 aspect-ratio: 16/9;
 
-                @supports not (aspect-ratio: 16/9) {
+                /* @supports not (aspect-ratio: 16/9) {
                     &::before {
                         float: left;
                         padding-top: 56.25%;
@@ -40,7 +40,7 @@
                         content: "";
                         clear: both;
                     }
-                }
+                } */
 
                 position: relative;
                 top: 0;
@@ -227,7 +227,8 @@
     </head>
     <body>
         <div class="slide-container">
-            <div class="slide">
+            <div id="app"></div>
+            <!-- <div class="slide">
                 <div class="title">
                     <span class="pre-title">Ping pong | </span>John Rapp Farnes leading, Oscar Engelbrektsson tight second
                 </div>
@@ -277,7 +278,7 @@
                 <div class="copyright">
                     Copyright &#169; John Rapp Farnes & Oscar Engelbrektsson
                 </div>
-            </div>
+            </div> -->
         </div>
         
         <!-- <select id="dropdown"></select>
