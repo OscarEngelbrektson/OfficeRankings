@@ -57,6 +57,10 @@ export let RankingTable = (ratings, filter='all') => {
     if (filter != 'all') {
         ratings = ratings.filter(x => x.Game == filter)
     }
+    ratings = ratings.concat(ratings)
+    ratings = ratings.concat(ratings)
+    ratings = ratings.concat(ratings)
+    ratings = ratings.concat(ratings)
     return `
         <table class="ranking-table">
             <tr>

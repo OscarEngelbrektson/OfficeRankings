@@ -10,10 +10,18 @@ let main = async () => {
     let app = $('#app')
   
     let gameTypes = ratings.map(x => x.Game).filter(uniqueValues)
+    // app.innerHTML = `
+    //     ${AgendaSlide(gameTypes)}
+    //     ${gameTypes.map(game => ResultsSlide(ratings, game))}
+    //     ${ResultsSlide(ratings, 'all')}
+    // `
+
+    let supportedGames = gameTypes.filter(g => g == 'Ping pong')
+
     app.innerHTML = `
-        ${AgendaSlide(gameTypes)}
-        ${gameTypes.map(game => ResultsSlide(ratings, game))}
-        ${ResultsSlide(ratings, 'all')}
+        ${supportedGames.map(game => ResultsSlide(ratings, game))}
+        ${supportedGames.map(game => ResultsSlide(ratings, game))}
+        ${supportedGames.map(game => ResultsSlide(ratings, game))}
     `
     // renderTable(ratings, 'Ping pong')
     // renderDropdown(ratings)
