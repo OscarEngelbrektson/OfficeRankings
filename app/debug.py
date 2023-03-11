@@ -1,8 +1,13 @@
 import pandas as pd
 
 from db import get_game_outcomes
+from index import get_ratings
 
-print(get_game_outcomes())
+#print(get_game_outcomes())
+
+print(get_ratings(0,0,0))
+
+
 
 
 # from player_ratings import calculate_player_ratings
