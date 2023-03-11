@@ -4,9 +4,9 @@ FROM public.ecr.aws/lambda/python:3.8
 # from your project folder.
 
 RUN  pip3 install --upgrade pip
-#COPY requirements.txt  .
-RUN  pip3 install pandas numpy gspread trueskill --target "${LAMBDA_TASK_ROOT}"
-# RUN  pip3 install -r requirements.txt --target "${LAMBDA_TASK_ROOT}"
+COPY app/requirements.txt  .
+# RUN  pip3 install pandas numpy gspread trueskill --target "${LAMBDA_TASK_ROOT}"
+RUN  pip3 install -r requirements.txt --target "${LAMBDA_TASK_ROOT}"
 
 # Copy function code
 COPY app ${LAMBDA_TASK_ROOT}

@@ -1,3 +1,5 @@
 app/gdrive_api_key.json
+app/__pycache__
 
 push-container.sh
+
