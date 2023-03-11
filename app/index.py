@@ -1,7 +1,7 @@
 import sys
 import json
 
-from commentary import generate_commentary
+from commentary import generate_commentary, generate_title
 from db import get_game_outcomes, write_player_ratings, get_player_ratings
 from player_ratings import calculate_player_ratings
 
@@ -32,7 +32,7 @@ def get_ratings(ev, cxt, kwargs):
     return player_ratings.to_json()
 
 @app.route('/ratings_and_commentary', methods=['GET'])
-def ratings_and_commentary(ev, cxt, kwargs):
+def get_ratings_and_commentary(ev, cxt, kwargs):
     player_ratings = get_player_ratings()
 
     game_outcomes = get_game_outcomes()
@@ -42,6 +42,7 @@ def ratings_and_commentary(ev, cxt, kwargs):
     return json.dumps({
         "ratings": json.loads(player_ratings.to_json()),
         "commentary": commentary,
+        "title": generate_title()
     })
 
 @app.route('/update_ratings')

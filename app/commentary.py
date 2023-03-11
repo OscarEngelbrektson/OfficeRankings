@@ -5,6 +5,10 @@ import numpy as np
 import pandas as pd
 from typing import Dict, List
 
+def generate_title():
+    return {
+        "Ping pong": 'John Rapp Farnes leading, Oscar Engelbrektsson tight second'
+    }
 
 def generate_commentary(
     game_outcomes: pd.DataFrame
@@ -16,9 +20,9 @@ def generate_commentary(
     '''
 
     commentary_arr = {"Ping pong": [
-        "comment1",
-        "comment2",
-        "comment3",
+        leader_comment(game_outcomes),
+        latest_win_comment(game_outcomes),
+        highest_activity_comment(game_outcomes),
     ]}
     return commentary_arr
 

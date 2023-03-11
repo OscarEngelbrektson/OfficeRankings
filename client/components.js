@@ -1,4 +1,4 @@
-export let Slide = ({title = 'Title', preTitle = '', footNote = '', content = ''}) => {
+export let Slide = ({title = 'Title', preTitle = '', footNote = '', sticker='', content = ''}) => {
     return `
         <div class="slide default-slide">
             <div class="slide-inner">
@@ -10,6 +10,9 @@ export let Slide = ({title = 'Title', preTitle = '', footNote = '', content = ''
                 <div class="copyright">
                     Copyright &#169; John Rapp Farnes & Oscar Engelbrektsson
                 </div>
+                ${sticker ? `
+                    <div class="sticker">${sticker}</div>
+                ` : ''}
             </div>
         </div>
     `
@@ -21,7 +24,7 @@ export let ResultsSlide = (ratings, game, commentary) => {
             Note: Self reported scores, may not reflect actual skill
         </div>
         <div>
-            Source: BCG STK proprietary Google forms rating system (TM); BCG analysis
+            Source: Proprietary Google forms rating system (TM); John & Oscar analysis
         </div>
     `
 
@@ -49,20 +52,24 @@ export let ResultsSlide = (ratings, game, commentary) => {
         title: 'John Rapp Farnes leading, Oscar Engelbrektsson tight second',
         preTitle: game,
         footNote: footNote,
+        sticker: 'Indicative',
         content: content
     })
 }
 
 export let RankingTable = (ratings, game) => {
-    ratings = ratings.concat(ratings)
-    ratings = ratings.concat(ratings)
-    ratings = ratings.concat(ratings)
+    // ratings = ratings.concat(ratings)
+    // ratings = ratings.concat(ratings)
+    // ratings = ratings.concat(ratings)
+    // ratings = ratings.concat(ratings)
+    // ratings = ratings.concat(ratings)
     return `
         <table class="ranking-table">
             <tr>
                 <th><div>Rank</div></th>
                 <th><div>Player</div></th>
                 <th><div>Rating</div></th>
+                <th><div># games</div></th>
             </tr>
             ${ratings.map(i => `
                 <tr>
@@ -71,6 +78,7 @@ export let RankingTable = (ratings, game) => {
                     </td>
                     <td>${i.Player}</td>
                     <td>${i.Rating}</td>
+                    <td>${i['Games played']}</td>
                 </tr>
             `).join('')}
         </table>
