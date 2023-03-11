@@ -15,7 +15,7 @@ def generate_commentary(
     :return: Dict with sport as key and array containing 3 comments as values per key.
     '''
 
-    commentary_arr = {"pingpong": [
+    commentary_arr = {"Ping pong": [
         "comment1",
         "comment2",
         "comment3",

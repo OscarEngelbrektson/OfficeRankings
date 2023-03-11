@@ -9,3 +9,15 @@ export let getPlayerRatings = async () => {
 
     return dfToObjList(playerRatingsDf)
 }
+
+export let getData = async () => {
+    // let response = await fetch(LAMBDA_URL, {cache: 'no-cache'})
+    // let playerRatingsDf = await response.json()
+
+    let { ratings, commentary } = JSON.parse('{"ratings": {"index": {"0": 0, "1": 1, "2": 2, "3": 0, "4": 1, "5": 2}, "Game": {"0": "Ping pong", "1": "Ping pong", "2": "Ping pong", "3": "Chess", "4": "Chess", "5": "Chess"}, "Player": {"0": "John", "1": "Oscar", "2": "Oskar Christiansen", "3": "John", "4": "Oscar", "5": "Oskar Christiansen"}, "Rating": {"0": 1420, "1": 1441, "2": 28, "3": 1461, "4": 953, "5": -91}}, "commentary": {"Ping pong": ["comment1", "comment2", "comment3"]}}')
+
+    return {
+        ratings: dfToObjList(ratings),
+        commentary
+    }
+}
