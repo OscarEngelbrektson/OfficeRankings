@@ -1,4 +1,5 @@
-app/gdrive_api_key.json
+app/misc/gdrive_api_key.json
 app/__pycache__
+__pycache__
 
 simple-push-lambda.sh
