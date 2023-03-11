@@ -1,11 +1,16 @@
 import pandas as pd
+import json
 
 from db import get_game_outcomes
 from index import get_ratings
 
 #print(get_game_outcomes())
 
-print(get_ratings_and_commentary(0,0,0))
+ratings = get_game_outcomes()
+
+print(ratings)
+
+print(json.dumps(ratings))
 
 
 

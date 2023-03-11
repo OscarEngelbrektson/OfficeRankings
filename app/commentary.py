@@ -16,7 +16,7 @@ def generate_commentary(
     '''
 
 
-    commentary_arr = {"pingpong": [
+    commentary_arr = {"Ping pong": [
         "comment1",
         "comment2",
         "comment3",

@@ -1,4 +1,5 @@
 import sys
+import json
 
 from commentary import generate_commentary
 from db import get_game_outcomes, write_player_ratings, get_player_ratings
@@ -17,6 +18,14 @@ HEADERS = {
 def index(ev, cxt, kwargs):
     return 'welcome to the index page!! <3'
 
+@app.route('/test')
+def index(ev, cxt, kwargs):
+    return json.dumps({'test': 2})
+
+@app.route('/test2')
+def index(ev, cxt, kwargs):
+    return {'test': 2}
+
 @app.route('/ratings', methods=['GET'])
 def get_ratings(ev, cxt, kwargs):
     player_ratings = get_player_ratings()
@@ -27,12 +36,13 @@ def ratings_and_commentary(ev, cxt, kwargs):
     player_ratings = get_player_ratings()
 
     game_outcomes = get_game_outcomes()
+   
     commentary = generate_commentary(game_outcomes)
-
-    return {
-        "ratings": player_ratings.to_json(),
+    
+    return json.dumps({
+        "ratings": json.loads(player_ratings.to_json()),
         "commentary": commentary,
-    }
+    })
 
 @app.route('/update_ratings')
 # @app.route('/update', methods=['POST'])
@@ -47,15 +57,17 @@ def update_ratings(ev, cxt, kwargs):
 def get_outcomes(ev, cxt, kwargs):
     game_outcomes = get_game_outcomes()
 
+    print(game_outcomes)
+
     return game_outcomes.to_json()
 
 def lambda_handler(event, context):
     try:
         return {
-        'statusCode': 200,
-        'body': app.run(event, context),
-        'headers': HEADERS
-    }
+            'statusCode': 200,
+            'body': app.run(event, context),
+            'headers': HEADERS
+        }
     
     except Exception as e:
       return {

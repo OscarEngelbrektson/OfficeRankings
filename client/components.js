@@ -15,7 +15,7 @@ export let Slide = ({title = 'Title', preTitle = '', footNote = '', content = ''
     `
 }
 
-export let ResultsSlide = (ratings, game) => {
+export let ResultsSlide = (ratings, game, commentary) => {
     let footNote = `
         <div>
             Note: Self reported scores, may not reflect actual skill
@@ -38,9 +38,9 @@ export let ResultsSlide = (ratings, game) => {
         <div class="commentary-container">
             <div class="heading">Commentary</div>
             <ul class="bullet-points">
-                <li>John Rapp Farnes a clear leader, key question is whether Oscar Engelbrektsson can catch up</li>
-                <li>Teif Alsadi just beat Oskar Christiansen in a nerve-racking game of Ping pong, his rating growing rapidly, albeit from a low base</li>
-                <li>Erik Eriksson's Ping pong activity at the office is experiencing strong growth, driven by fundamental trends of BD work and 'nothing better to do tbh'</li>
+                ${commentary[game].map(comment => `
+                    <li>${comment}</li>
+                `).join('')}
             </ul>
         </div>
     `
