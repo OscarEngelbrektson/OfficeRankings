@@ -15,7 +15,7 @@ export let Slide = ({title = 'Title', preTitle = '', footNote = '', content = ''
     `
 }
 
-export let ResultsSlide = (ratings, filter='all') => {
+export let ResultsSlide = (ratings, game) => {
     let footNote = `
         <div>
             Note: Self reported scores, may not reflect actual skill
@@ -27,7 +27,7 @@ export let ResultsSlide = (ratings, filter='all') => {
 
     let content = `
         <div class="table-container">
-            ${RankingTable(ratings, filter)}
+            ${RankingTable(ratings, game)}
         </div>
         <div class="flow-arrow">
             <div class="green-arrow">
@@ -47,17 +47,13 @@ export let ResultsSlide = (ratings, filter='all') => {
 
     return Slide({
         title: 'John Rapp Farnes leading, Oscar Engelbrektsson tight second',
-        preTitle: filter != 'all' ? filter : '',
+        preTitle: game,
         footNote: footNote,
         content: content
     })
 }
 
-export let RankingTable = (ratings, filter='all') => {
-    if (filter != 'all') {
-        ratings = ratings.filter(x => x.Game == filter)
-    }
-    ratings = ratings.concat(ratings)
+export let RankingTable = (ratings, game) => {
     ratings = ratings.concat(ratings)
     ratings = ratings.concat(ratings)
     ratings = ratings.concat(ratings)

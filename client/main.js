@@ -6,22 +6,23 @@ const $$ = document.querySelectorAll.bind(document)
 
 let main = async () => {
     let ratings = await getPlayerRatings()
+    // console.log(ratings)
 
     let app = $('#app')
   
     let gameTypes = ratings.map(x => x.Game).filter(uniqueValues)
+    gameTypes = gameTypes.filter(g => g == 'Ping pong')
+  
     // app.innerHTML = `
     //     ${AgendaSlide(gameTypes)}
     //     ${gameTypes.map(game => ResultsSlide(ratings, game))}
     //     ${ResultsSlide(ratings, 'all')}
     // `
 
-    let supportedGames = gameTypes.filter(g => g == 'Ping pong')
-
     app.innerHTML = `
-        ${supportedGames.map(game => ResultsSlide(ratings, game))}
-        ${supportedGames.map(game => ResultsSlide(ratings, game))}
-        ${supportedGames.map(game => ResultsSlide(ratings, game))}
+        ${gameTypes.map(game => ResultsSlide(ratings.filter(x => x.Game == game), game))}
+        ${gameTypes.map(game => ResultsSlide(ratings.filter(x => x.Game == game), game))}
+        ${gameTypes.map(game => ResultsSlide(ratings.filter(x => x.Game == game), game))}
     `
     // renderTable(ratings, 'Ping pong')
     // renderDropdown(ratings)
