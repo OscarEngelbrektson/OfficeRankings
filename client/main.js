@@ -5,7 +5,7 @@ const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
 let main = async () => {
-    let { ratings, commentary } = await getData()
+    let { ratings, commentary, titles } = await getData()
     // console.log(ratings)
 
     let app = $('#app')
@@ -20,7 +20,7 @@ let main = async () => {
     // `
 
     app.innerHTML = `
-        ${gameTypes.map(game => ResultsSlide(ratings.filter(x => x.Game == game), game, commentary))}
+        ${gameTypes.map(game => ResultsSlide(ratings.filter(x => x.Game == game), game, commentary, titles[game]))}
     `
     // renderTable(ratings, 'Ping pong')
     // renderDropdown(ratings)

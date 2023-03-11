@@ -18,7 +18,7 @@ export let Slide = ({title = 'Title', preTitle = '', footNote = '', sticker='', 
     `
 }
 
-export let ResultsSlide = (ratings, game, commentary) => {
+export let ResultsSlide = (ratings, game, commentary, title) => {
     let footNote = `
         <div>
             Note: Self reported scores, may not reflect actual skill
@@ -49,7 +49,7 @@ export let ResultsSlide = (ratings, game, commentary) => {
     `
 
     return Slide({
-        title: 'John Rapp Farnes leading, Oscar Engelbrektsson tight second',
+        title: title,
         preTitle: game,
         footNote: footNote,
         sticker: 'Indicative',

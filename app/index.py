@@ -42,7 +42,7 @@ def get_ratings_and_commentary(ev, cxt, kwargs):
     return json.dumps({
         "ratings": json.loads(player_ratings.to_json()),
         "commentary": commentary,
-        "title": generate_title()
+        "titles": generate_title()
     })
 
 @app.route('/update_ratings')
