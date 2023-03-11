@@ -16,7 +16,7 @@ def get_player_ratings():
 GAME_OUTCOMES_SHEET_NR = 0
 PLAYER_RATINGS_SHEET_NR = 1
 
-AUTH_KEY_FILE_NAME = 'gdrive_api_key.json'
+AUTH_KEY_FILE_NAME = 'app/utils/gdrive_api_key.json'
 GOOGLE_SHEET_NAME = 'Game outcome (Responses)'
 
 def get_google_sheet():
