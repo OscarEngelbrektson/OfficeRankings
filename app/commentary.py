@@ -21,7 +21,7 @@ def generate_commentary(
 
     game = 'Ping pong'
 
-    commentary_arr = {"Ping pong": [
+    commentary_arr = {game: [
         leader_comment(game_outcomes, game),
         latest_win_comment(game_outcomes, game),
         highest_activity_comment(game_outcomes, game),

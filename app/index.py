@@ -18,14 +18,6 @@ HEADERS = {
 def index(ev, cxt, kwargs):
     return 'welcome to the index page!! <3'
 
-@app.route('/test')
-def index(ev, cxt, kwargs):
-    return json.dumps({'test': 2})
-
-@app.route('/test2')
-def index(ev, cxt, kwargs):
-    return {'test': 2}
-
 @app.route('/ratings', methods=['GET'])
 def get_ratings(ev, cxt, kwargs):
     player_ratings = get_player_ratings()
