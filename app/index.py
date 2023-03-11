@@ -20,6 +20,11 @@ def index(ev, cxt, kwargs):
 @app.route('/ratings', methods=['GET'])
 def get_ratings(ev, cxt, kwargs):
     player_ratings = get_player_ratings()
+    return player_ratings.to_json()
+
+@app.route('/ratings_and_commentary', methods=['GET'])
+def ratings_and_commentary(ev, cxt, kwargs):
+    player_ratings = get_player_ratings()
 
     game_outcomes = get_game_outcomes()
     commentary = generate_commentary(game_outcomes)

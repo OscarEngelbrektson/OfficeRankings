@@ -5,7 +5,7 @@ from index import get_ratings
 
 #print(get_game_outcomes())
 
-print(get_ratings(0,0,0))
+print(get_ratings_and_commentary(0,0,0))
 
 
 
