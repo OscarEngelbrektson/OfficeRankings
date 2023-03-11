@@ -9,10 +9,19 @@ def calculate_player_ratings(game_outcomes):
     for game in game_types:
         outcomes = game_outcomes[game_outcomes.Game == game]
 
-        players = pd.concat([outcomes['Winner'], outcomes['Honorable opponent']]).unique()
+        player_games_df = pd.concat([outcomes['Winner'], outcomes['Honorable opponent']])
+        players = player_games_df.unique()
+        
+        # Get games per player df
+        games_per_player = player_games_df.value_counts()
+        games_per_player_df = pd.DataFrame({
+            "Player": games_per_player.index,
+            "Games played": games_per_player.values,
+            })
 
+        # Compute player rankings
         player_ratings = {}
-
+        
         for player in players:
             player_ratings[player] = Rating()
 
@@ -27,6 +36,16 @@ def calculate_player_ratings(game_outcomes):
             'Player': player_ratings.keys(),
             'Rating': list(map(display_rating, player_ratings.values())),
         })
+
+        df = df.merge(
+            games_per_player_df,
+            how = "left",
+            on="Player",
+            validate="1:1",
+        ).sort_values(
+            by="Rating",
+            ascending=False,
+        )
 
         ratings_df = pd.concat([ratings_df, df])
     
