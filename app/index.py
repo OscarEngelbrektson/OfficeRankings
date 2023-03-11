@@ -45,8 +45,7 @@ def get_ratings_and_commentary(ev, cxt, kwargs):
         "titles": generate_title()
     })
 
-@app.route('/update_ratings')
-# @app.route('/update', methods=['POST'])
+@app.route('/update_ratings', methods=['POST', 'GET'])
 def update_ratings(ev, cxt, kwargs):
     game_outcomes = get_game_outcomes()
     player_ratings = calculate_player_ratings(game_outcomes)
@@ -73,5 +72,5 @@ def lambda_handler(event, context):
     except Exception as e:
       return {
         'statusCode': 500,
-        'body': sys.exc_info()
+        'body': str(e)
     }
