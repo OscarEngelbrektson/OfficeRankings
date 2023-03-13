@@ -1,29 +1,36 @@
 import { getData } from './data.js'
-import { ResultsSlide, AgendaSlide } from './components.js'
+import { ResultsSlide, Slide } from './components.js'
 
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
+const SUPPORTED_GAMES = [
+    'Ping pong',
+    'Foosball'
+]
 let main = async () => {
-    let { ratings, commentary, titles } = await getData()
-    // console.log(ratings)
-
     let app = $('#app')
+   
+    app.innerHTML = `
+        ${Slide({ title: 'Loading...' })}
+    `
+
+    let { ratings, commentary, titles } = await getData()
   
-    let gameTypes = ratings.map(x => x.Game).filter(uniqueValues)
-    gameTypes = gameTypes.filter(g => g == 'Ping pong')
-  
+    let gameTypes = ratings
+        .map(x => x.Game).filter(uniqueValues)
+        .filter(g => SUPPORTED_GAMES.includes(g))
+
+    app.innerHTML = `
+        ${gameTypes.map(
+            (game, i) => ResultsSlide(ratings.filter(x => x.Game == game), game, commentary, titles[game], i + 1)
+        ).join('')}
+    `
     // app.innerHTML = `
     //     ${AgendaSlide(gameTypes)}
     //     ${gameTypes.map(game => ResultsSlide(ratings, game))}
     //     ${ResultsSlide(ratings, 'all')}
     // `
-
-    app.innerHTML = `
-        ${gameTypes.map(game => ResultsSlide(ratings.filter(x => x.Game == game), game, commentary, titles[game]))}
-    `
-    // renderTable(ratings, 'Ping pong')
-    // renderDropdown(ratings)
 }
 
 let removeColumn = colName => o => delete o[colName] && o

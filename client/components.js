@@ -1,4 +1,4 @@
-export let Slide = ({title = 'Title', preTitle = '', footNote = '', sticker='', content = ''}) => {
+export let Slide = ({title = 'Title', preTitle = '', footNote = '', sticker='', content = '', slideNr = 1}) => {
     return `
         <div class="slide default-slide">
             <div class="slide-inner">
@@ -10,6 +10,7 @@ export let Slide = ({title = 'Title', preTitle = '', footNote = '', sticker='', 
                 <div class="copyright">
                     Copyright &#169; John Rapp Farnes & Oscar Engelbrektsson
                 </div>
+                <div class="slide-nr">${slideNr}</div>
                 ${sticker ? `
                     <div class="sticker">${sticker}</div>
                 ` : ''}
@@ -18,7 +19,7 @@ export let Slide = ({title = 'Title', preTitle = '', footNote = '', sticker='', 
     `
 }
 
-export let ResultsSlide = (ratings, game, commentary, title) => {
+export let ResultsSlide = (ratings, game, commentary, title, slideNr) => {
     let footNote = `
         <div>
             Note: Self reported scores, may not reflect actual skill
@@ -53,7 +54,8 @@ export let ResultsSlide = (ratings, game, commentary, title) => {
         preTitle: game,
         footNote: footNote,
         sticker: 'Indicative',
-        content: content
+        content: content,
+        slideNr: slideNr
     })
 }
 
@@ -71,14 +73,14 @@ export let RankingTable = (ratings, game) => {
                 <th><div>Rating</div></th>
                 <th><div># games</div></th>
             </tr>
-            ${ratings.map(i => `
+            ${ratings.map((player, i) => `
                 <tr>
                     <td>
-                        <div class="number-ball">${i.index + 1}</div>
+                        <div class="number-ball">${i+ 1}</div>
                     </td>
-                    <td>${i.Player}</td>
-                    <td>${i.Rating}</td>
-                    <td>${i['Games played']}</td>
+                    <td>${player.Player}</td>
+                    <td>${player.Rating}</td>
+                    <td>${player['Games played']}</td>
                 </tr>
             `).join('')}
         </table>

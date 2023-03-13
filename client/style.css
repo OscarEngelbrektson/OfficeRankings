@@ -8,9 +8,10 @@ body {
     background-color: #EDEBE9;
 }
 .slide-container {
-    position: relative;
+    /* position: relative;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%); */
+
     margin: auto;
     max-width: 1500px;
 }
@@ -81,6 +82,15 @@ body {
 
     position: absolute;
     bottom: 25px;
+}
+
+.slide .slide-nr {
+    color: var(--accent-gray);
+    font-size: 50%;
+
+    position: absolute;
+    bottom: 25px;
+    right: 70px;
 }
 
 .slide .copyright {
