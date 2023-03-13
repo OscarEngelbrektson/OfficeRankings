@@ -1,6 +1,8 @@
 :root {
-    --accent-green: rgb(41, 186, 116);
-    --accent-blue: rgb(41, 94, 126);
+    /* --accent-green: rgb(41, 186, 116);
+    --accent-blue: rgb(41, 94, 126); */
+    --accent-green: #02C39A;
+    --accent-blue: #05668D;
     --accent-gray: rgb(127, 127, 127);
 }
 

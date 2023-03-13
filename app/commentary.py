@@ -97,7 +97,7 @@ LEADER_COMMENT_FORMAT = """
 LATEST_WIN_COMMENT_FORMAT = """
     {winner} just beat {second}
     in a nerve-racking game of {game} -
-    his rating growing rapidly, 
+    rating growing rapidly, 
     albeit from a low base
 """
 

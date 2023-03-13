@@ -12,7 +12,7 @@ let main = async () => {
     let app = $('#app')
    
     app.innerHTML = `
-        ${Slide({ title: 'Loading...' })}
+        ${Slide({ preTitle: 'Loading', title: 'STK Ranked is loading, hang tight for latest results' })}
     `
 
     let { ratings, commentary, titles } = await getData()

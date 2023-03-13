@@ -8,7 +8,7 @@ export let Slide = ({title = 'Title', preTitle = '', footNote = '', sticker='', 
                 <div class="footnote">${footNote}</div>
                 <div class="content">${content}</div>
                 <div class="copyright">
-                    Copyright &#169; John Rapp Farnes & Oscar Engelbrektsson
+                    Copyright &#169; John R & Oscar E at Stockholm office
                 </div>
                 <div class="slide-nr">${slideNr}</div>
                 ${sticker ? `
@@ -25,7 +25,7 @@ export let ResultsSlide = (ratings, game, commentary, title, slideNr) => {
             Note: Self reported scores, may not reflect actual skill
         </div>
         <div>
-            Source: Proprietary Google forms rating system (TM); John & Oscar analysis
+            Source: Proprietary STK Ranked Google forms rating system&trade;; John & Oscar analysis
         </div>
     `
 
