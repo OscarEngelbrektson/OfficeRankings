@@ -12,6 +12,7 @@ const INACTIVE_GAMES = [
     'Padel',
     'Super smash',
     'Fifa',
+    'Chess',
 ]
 
 let main = async () => {
