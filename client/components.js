@@ -8,7 +8,7 @@ export let Slide = ({title = 'Title', preTitle = '', footNote = '', sticker='', 
                 <div class="footnote">${footNote}</div>
                 <div class="content">${content}</div>
                 <div class="copyright">
-                    Copyright &#169; John R & Oscar E at Stockholm office
+                    Copyright &#169; John R & Oscar E at the Stockholm office
                 </div>
                 <div class="slide-nr">${slideNr}</div>
                 ${sticker ? `

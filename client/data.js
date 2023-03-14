@@ -1,6 +1,6 @@
 let dfToObjList = df => Object.keys(df.index).map(i => Object.fromEntries(Object.keys(df).map(k => [k, df[k][i]])))
 
-const LAMBDA_URL = 'https://lne6kwcwxzlg5fskrfnkkt4lj40lssgc.lambda-url.eu-north-1.on.aws/'
+const LAMBDA_URL = 'https://lne6kwcwxzlg5fskrfnkkt4lj40lssgc.lambda-url.eu-north-1.on.aws'
 export let getPlayerRatings = async () => {
     // let response = await fetch(LAMBDA_URL, {cache: 'no-cache'})
     // let playerRatingsDf = await response.json()
@@ -11,6 +11,8 @@ export let getPlayerRatings = async () => {
 }
 
 export let getData = async () => {
+    // fetch(`${LAMBDA_URL}/ratings`, {cache: 'no-cache'})
+
     let response = await fetch(`${LAMBDA_URL}/ratings_and_commentary`, {cache: 'no-cache'})
     let { ratings, commentary, titles } = await response.json()
 
