@@ -1,4 +1,4 @@
-const PASSWORD = 'aaa'
+const PASSWORD = String.fromCharCode(100-3)+String.fromCharCode(3*30+7)+String.fromCharCode((1<<2<<2<<2)+33)
 export let verifyPassword = () => {
     if (localStorage.password == PASSWORD) {
         return true
