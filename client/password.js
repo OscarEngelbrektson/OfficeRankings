@@ -4,7 +4,7 @@ export let verifyPassword = () => {
         return true
     } else {
         let input = prompt('Please enter the password (not case sensitive)')
-        if (input && isPassword(input)) {
+        if (isPassword(input)) {
             localStorage.password = input
             return true
         } else {
@@ -14,4 +14,4 @@ export let verifyPassword = () => {
     }
 }
 
-let isPassword = input => input.toLowerCase() === PASSWORD.toLowerCase()
+let isPassword = input => input && input.toLowerCase() === PASSWORD.toLowerCase()
