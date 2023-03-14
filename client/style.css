@@ -4,6 +4,8 @@
     --accent-green: #02C39A;
     --accent-blue: #05668D;
     --accent-gray: rgb(127, 127, 127);
+
+    --green-arrow-size: 26px
 }
 
 body {
@@ -61,6 +63,10 @@ body {
     
     .slide .content {
         margin-top: 10px;
+    }
+
+    :root {
+        --green-arrow-size: 20px;
     }
 }
 
@@ -165,19 +171,19 @@ table.ranking-table {
 }
 
 .number-ball {
-    width: 26px;
-    height: 26px;
+    width: var(--green-arrow-size);
+    height: var(--green-arrow-size);
     background-color: var(--accent-green);
     border-radius: 100%;
     text-align: center;
     color: white;
     font-size: 70%;
-    line-height: 26px;
+    line-height: var(--green-arrow-size);
     margin: auto;
 }
 
 .flow-arrow {
-    padding: 26px;
+    padding: var(--green-arrow-size);
     background-image: linear-gradient(var(--accent-gray), var(--accent-gray));
     background-size: 1px 100%;
     background-repeat: no-repeat;
@@ -191,8 +197,8 @@ table.ranking-table {
 }
 
 .green-arrow {
-    width: 26px;
-    height: 26px;
+    width: var(--green-arrow-size);
+    height: var(--green-arrow-size);
     background-color: var(--accent-green);
     border-radius: 100%;
     position: relative; 

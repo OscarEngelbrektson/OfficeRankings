@@ -15,35 +15,26 @@ const INACTIVE_GAMES = [
 
 let main = async () => {
     let app = $('#app')
+    app.innerHTML = render_empty()
 
-    app.innerHTML = `
-        ${AgendaSlide(SUPPORTED_GAMES, INACTIVE_GAMES)}
-        ${SUPPORTED_GAMES.map(
-            game => Slide({ preTitle: game, title: 'STK Ranked is loading, hang tight for latest results...' })
-        ).join('')}
-    `
     let { ratings, commentary, titles } = await getData()
-  
-    // let gameTypes = ratings
-    //     .map(x => x.Game).filter(uniqueValues)
-    //     .filter(g => SUPPORTED_GAMES.includes(g))
 
-    app.innerHTML = `
-        ${AgendaSlide(SUPPORTED_GAMES, INACTIVE_GAMES)}
-        ${SUPPORTED_GAMES.map(
-            (game, i) => ResultsSlide(ratings.filter(x => x.Game == game), game, commentary, titles[game], i + 1)
-        ).join('')}
-    `
-
-    // onHashChange()
-
-    // app.innerHTML = `
-    //     ${AgendaSlide(gameTypes)}
-    //     ${gameTypes.map(game => ResultsSlide(ratings, game))}
-    //     ${ResultsSlide(ratings, 'all')}
-    // `
+    app.innerHTML = render_app({ ratings, commentary, titles })
 }
 
-document.addEventListener('DOMContentLoaded', main);
+let render_empty = () => `
+    ${AgendaSlide(SUPPORTED_GAMES, INACTIVE_GAMES)}
+    ${SUPPORTED_GAMES.map(
+        game => Slide({ preTitle: game, title: 'STK Ranked is loading, hang tight for the latest results...' })
+    ).join('')}
+`
 
-// window.addEventListener('hashchange', onHashChange);
+let render_app = ({ ratings, commentary, titles }) => `
+    ${AgendaSlide(SUPPORTED_GAMES, INACTIVE_GAMES)}
+    ${SUPPORTED_GAMES.map(
+        (game, i) => ResultsSlide(ratings.filter(x => x.Game == game), game, commentary, titles[game], i + 1)
+    ).join('')}
+`
+
+
+document.addEventListener('DOMContentLoaded', main);
