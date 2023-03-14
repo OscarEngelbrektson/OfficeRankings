@@ -1,6 +1,8 @@
-export let Slide = ({title = 'Title', preTitle = '', footNote = '', sticker='', content = '', slideNr = 1}) => {
+import { registerOnClick, scrollToId } from "./framework.js"
+
+export let Slide = ({title = 'Title', preTitle = '', footNote = '', sticker='', content = '', slideNr = 1, slideId = ''}) => {
     return `
-        <div class="slide default-slide">
+        <div class="slide default-slide" ${slideId ? `id="${slideId}"`: ''}>
             <div class="slide-inner">
                 <div class="slide-title">
                     <span class="pre-title">${preTitle ? preTitle + ' | ' : ''}</span>${title}
@@ -34,10 +36,7 @@ export let ResultsSlide = (ratings, game, commentary, title, slideNr) => {
             ${RankingTable(ratings, game)}
         </div>
         <div class="flow-arrow">
-            <div class="green-arrow">
-                <div class="top"></div>
-                <div class="bottom"></div>
-            </div>
+            ${GreenArrow()}
         </div>
         <div class="commentary-container">
             <div class="heading">Commentary</div>
@@ -55,7 +54,8 @@ export let ResultsSlide = (ratings, game, commentary, title, slideNr) => {
         footNote: footNote,
         sticker: 'Indicative',
         content: content,
-        slideNr: slideNr
+        slideNr: slideNr,
+        slideId: resultSlideId(game)
     })
 }
 
@@ -87,21 +87,38 @@ export let RankingTable = (ratings, game) => {
     `
 }
 
-export let AgendaSlide = (gameTypes) => {
-    let title = 'Contents of this document'
+export let AgendaSlide = (gameTypes, inactiveGameTypes) => {
+    let title = 'Office leaderboards'
 
-    let content = ''
+    let onClick = game => registerOnClick(e => scrollToId(resultSlideId(game)))
+
+    let content = `
+        ${gameTypes.map(game => `
+            <div class="agenda-item clickable" onclick="${onClick(game)}">
+                ${GreenArrow()}
+                <div class="item-title">${game}</div>
+            </div>
+        `).join('')}
+        ${inactiveGameTypes.map(game => `
+            <div class="agenda-item inactive">
+                ${GreenArrow()}
+                <div class="item-title">${game}</div>
+            </div>
+        `).join('')}
+        <div class="agenda-item inactive dot3">
+            ${GreenArrow()}
+            <div class="item-title">... more to come</div>
+        </div>
+    `
 
     return `
         <div class="slide">
             <div class="one-third agenda-bg">
                 <div class="img-overlay"></div>
-                <div class="slide-title">
-                    ${title}
-                </div>
+                <div class="slide-title">${title}</div>
             </div>
             <div class="two-thirds">
-                <div class="two-thirds-inner"></div>
+                <div class="two-thirds-inner">${content}</div>
             </div>
             <div class="copyright">
                 Copyright &#169; John Rapp Farnes & Oscar Engelbrektsson
@@ -109,3 +126,12 @@ export let AgendaSlide = (gameTypes) => {
         </div>
     `
 }
+
+export let GreenArrow = () => `
+    <div class="green-arrow">
+        <div class="top"></div>
+        <div class="bottom"></div>
+    </div>
+`
+
+let resultSlideId = game => `result-slide-${game.replace(' ', '-').toLowerCase()}`

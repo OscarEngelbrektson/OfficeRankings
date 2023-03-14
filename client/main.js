@@ -1,31 +1,42 @@
 import { getData } from './data.js'
-import { ResultsSlide, Slide } from './components.js'
-
-const $ = document.querySelector.bind(document)
-const $$ = document.querySelectorAll.bind(document)
+import { ResultsSlide, Slide, AgendaSlide } from './components.js'
+import { $ } from './framework.js'
 
 const SUPPORTED_GAMES = [
     'Ping pong',
     'Foosball'
 ]
+const INACTIVE_GAMES = [
+    'Tennis',
+    'Padel',
+    'Super smash',
+    'Fifa',
+]
+
 let main = async () => {
     let app = $('#app')
-   
-    app.innerHTML = `
-        ${Slide({ preTitle: 'Loading', title: 'STK Ranked is loading, hang tight for latest results' })}
-    `
 
+    app.innerHTML = `
+        ${AgendaSlide(SUPPORTED_GAMES, INACTIVE_GAMES)}
+        ${SUPPORTED_GAMES.map(
+            game => Slide({ preTitle: game, title: 'STK Ranked is loading, hang tight for latest results...' })
+        ).join('')}
+    `
     let { ratings, commentary, titles } = await getData()
   
-    let gameTypes = ratings
-        .map(x => x.Game).filter(uniqueValues)
-        .filter(g => SUPPORTED_GAMES.includes(g))
+    // let gameTypes = ratings
+    //     .map(x => x.Game).filter(uniqueValues)
+    //     .filter(g => SUPPORTED_GAMES.includes(g))
 
     app.innerHTML = `
-        ${gameTypes.map(
+        ${AgendaSlide(SUPPORTED_GAMES, INACTIVE_GAMES)}
+        ${SUPPORTED_GAMES.map(
             (game, i) => ResultsSlide(ratings.filter(x => x.Game == game), game, commentary, titles[game], i + 1)
         ).join('')}
     `
+
+    // onHashChange()
+
     // app.innerHTML = `
     //     ${AgendaSlide(gameTypes)}
     //     ${gameTypes.map(game => ResultsSlide(ratings, game))}
@@ -33,25 +44,6 @@ let main = async () => {
     // `
 }
 
-let removeColumn = colName => o => delete o[colName] && o
-
-
-let uniqueValues = (value, index, self) => self.indexOf(value) === index
-let renderDropdown = (ratings) => {
-    let select = $('select#dropdown')
-
-    let gameTypes = ratings.map(x => x.Game).filter(uniqueValues)
-
-    select.innerHTML = `
-        <option value="all">All</option>
-        ${gameTypes.map(game => `
-            <option value="${game}">
-                ${game}
-            </option>
-        `).join('')}
-    `
-
-    select.addEventListener('change', () => renderTable(ratings, select.value));
-} 
-
 document.addEventListener('DOMContentLoaded', main);
+
+// window.addEventListener('hashchange', onHashChange);

@@ -165,35 +165,37 @@ table.ranking-table {
 }
 
 .number-ball {
-    width: 20px;
-    height: 20px;
+    width: 26px;
+    height: 26px;
     background-color: var(--accent-green);
     border-radius: 100%;
     text-align: center;
     color: white;
-    font-size: 60%;
-    line-height: 20px;
+    font-size: 70%;
+    line-height: 26px;
     margin: auto;
 }
 
 .flow-arrow {
-    padding: 20px;
+    padding: 26px;
     background-image: linear-gradient(var(--accent-gray), var(--accent-gray));
     background-size: 1px 100%;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
-.green-arrow {
-    width: 20px;
-    height: 20px;
-    background-color: var(--accent-green);
-    border-radius: 100%;
+.flow-arrow .green-arrow {
     margin: auto;
-
-    position: relative; 
     top: 50%;
     transform: translateY(-50%);
+}
+
+.green-arrow {
+    width: 26px;
+    height: 26px;
+    background-color: var(--accent-green);
+    border-radius: 100%;
+    position: relative; 
 }
 
 .green-arrow > .top {
@@ -217,6 +219,10 @@ table.ranking-table {
     top: 62%;
     left: 30%;
     transform: rotate(-45deg);
+}
+
+.slide .two-thirds .agenda-item + .agenda-item {
+    margin-top: 40px;
 }
 
 .slide .commentary-container {
@@ -260,13 +266,14 @@ table.ranking-table {
 }
 
 .slide .one-third .slide-title {
-    padding: 40px;
+    padding: 60px;
     color: white;
     z-index: 100;
+    font-size: 140%;
 }
 
 .slide .one-third.agenda-bg {
-    background-image: url("client/res/agenda-bg.png");
+    background-image: url("res/icon.png");
     background-size: auto 100%;
     background-position: 40% center;
 }
@@ -275,6 +282,24 @@ table.ranking-table {
     width: 67%;
     height: 100%;
     float: left;
+    display: flex;
+}
+
+.slide .two-thirds-inner {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 70px;
+}
+
+.slide .two-thirds .agenda-item {
+    display: flex;
+    align-items: center;
+}
+
+.slide .agenda-item .item-title {
+    margin-left: 20px;
 }
 
 .img-overlay {
@@ -294,4 +319,16 @@ table.ranking-table {
     background: var(--accent-green);
     color: white;
     padding: 1px 30px;
+}
+
+.agenda-item.inactive {
+    opacity: 0.4;
+}
+
+.agenda-item.dot3 > .green-arrow {
+    opacity: 0;
+}
+
+.clickable {
+    cursor: pointer;
 }
