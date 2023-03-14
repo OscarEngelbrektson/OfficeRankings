@@ -1,10 +1,10 @@
 const PASSWORD = String.fromCharCode(68 - 3) + String.fromCharCode(3 * 30 + 7) + String.fromCharCode((1 << 2 << 2 << 2) + 33)
 export let verifyPassword = () => {
-    if (localStorage.password == PASSWORD) {
+    if (isPassword(localStorage.password)) {
         return true
     } else {
         let input = prompt('Please enter the password (not case sensitive)')
-        if (isPassword(input)) {
+        if (input && isPassword(input)) {
             localStorage.password = input
             return true
         } else {
