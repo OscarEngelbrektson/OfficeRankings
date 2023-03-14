@@ -1,6 +1,7 @@
 import { getData } from './data.js'
 import { ResultsSlide, Slide, AgendaSlide } from './components.js'
 import { $ } from './framework.js'
+import { verifyPassword } from './password.js'
 
 const SUPPORTED_GAMES = [
     'Ping pong',
@@ -17,9 +18,13 @@ let main = async () => {
     let app = $('#app')
     app.innerHTML = render_empty()
 
-    let { ratings, commentary, titles } = await getData()
+    let response = getData()
 
-    app.innerHTML = render_app({ ratings, commentary, titles })
+    if (verifyPassword()) {
+        let { ratings, commentary, titles } = await response
+
+        app.innerHTML = render_app({ ratings, commentary, titles })
+    }
 }
 
 let render_empty = () => `
