@@ -31,15 +31,15 @@ let main = async () => {
 let render_empty = () => `
     ${AgendaSlide(SUPPORTED_GAMES, INACTIVE_GAMES)}
     ${SUPPORTED_GAMES.map(
-        game => Slide({ preTitle: game, title: 'STK Ranked is loading, hang tight for the latest results...' })
-    ).join('')}
+    game => Slide({ preTitle: game, title: 'STK Ranked is loading, hang tight for the latest results...' })
+).join('')}
 `
 
 let render_app = ({ ratings, commentary, titles }) => `
     ${AgendaSlide(SUPPORTED_GAMES, INACTIVE_GAMES)}
     ${SUPPORTED_GAMES.map(
-        (game, i) => ResultsSlide(ratings.filter(x => x.Game == game), game, commentary, titles[game], i + 1)
-    ).join('')}
+    (game, i) => ResultsSlide(ratings.filter(x => x.Game == game), game, commentary, titles[game], i + 1)
+).join('')}
 `
 
 

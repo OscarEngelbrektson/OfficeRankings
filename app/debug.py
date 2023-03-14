@@ -4,15 +4,13 @@ import json
 from db import get_game_outcomes
 from index import get_ratings
 
-#print(get_game_outcomes())
+# print(get_game_outcomes())
 
 ratings = get_game_outcomes()
 
 print(ratings)
 
 print(json.dumps(ratings))
-
-
 
 
 # from player_ratings import calculate_player_ratings

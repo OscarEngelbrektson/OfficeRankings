@@ -1,8 +1,8 @@
 import { registerOnClick, scrollToId } from "./framework.js"
 
-export let Slide = ({title = 'Title', preTitle = '', footNote = '', sticker='', content = '', slideNr = 1, slideId = ''}) => {
+export let Slide = ({ title = 'Title', preTitle = '', footNote = '', sticker = '', content = '', slideNr = 1, slideId = '' }) => {
     return `
-        <div class="slide default-slide" ${slideId ? `id="${slideId}"`: ''}>
+        <div class="slide default-slide" ${slideId ? `id="${slideId}"` : ''}>
             <div class="slide-inner">
                 <div class="slide-title">
                     <span class="pre-title">${preTitle ? preTitle + ' | ' : ''}</span>${title}
@@ -76,7 +76,7 @@ export let RankingTable = (ratings, game) => {
             ${ratings.map((player, i) => `
                 <tr>
                     <td>
-                        <div class="number-ball">${i+ 1}</div>
+                        <div class="number-ball">${i + 1}</div>
                     </td>
                     <td>${player.Player}</td>
                     <td>${player.Rating}</td>

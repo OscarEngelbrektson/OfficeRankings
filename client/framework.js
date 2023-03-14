@@ -6,7 +6,7 @@ window[LISTNERS_ARR] = []
 let listenerNr = -1
 export let registerOnClick = (callback) => {
     listenerNr++
-    
+
     window[LISTNERS_ARR].push(callback)
     return `window['${LISTNERS_ARR}'][${listenerNr}](this)`
 }

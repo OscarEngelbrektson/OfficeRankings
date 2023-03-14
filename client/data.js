@@ -13,7 +13,7 @@ export let getPlayerRatings = async () => {
 export let getData = async () => {
     // fetch(`${LAMBDA_URL}/ratings`, {cache: 'no-cache'})
 
-    let response = await fetch(`${LAMBDA_URL}/ratings_and_commentary`, {cache: 'no-cache'})
+    let response = await fetch(`${LAMBDA_URL}/ratings_and_commentary`, { cache: 'no-cache' })
     let { ratings, commentary, titles } = await response.json()
 
     // let json_resp = `
