@@ -6,3 +6,4 @@ __pycache__
 simple-push-lambda.sh
 app/debug.py
 *.pyc
+venv
